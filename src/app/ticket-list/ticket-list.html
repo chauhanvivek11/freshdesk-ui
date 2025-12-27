@@ -1,0 +1,108 @@
+<div class="container">
+  <h2>🎫 Help Desk Dashboard</h2>
+ 
+     <div style="display: flex; justify-content: space-between; align-items: center;">
+  <h2>🎫 Help Desk Dashboard</h2>
+  
+  <button (click)="onLogout()" style="background: #333; color: white; border: none; padding: 8px 15px; cursor: pointer;">
+    Logout 🚪
+  </button>
+</div>
+
+<div class="stats-container">
+  
+  <div class="stat-card total">
+    <h3>Total Tickets</h3>
+    <p>{{ totalTickets }}</p>
+  </div>
+
+  <div class="stat-card open">
+    <h3>🔴 Pending</h3>
+    <p>{{ openTickets }}</p>
+  </div>
+
+  <div class="stat-card closed">
+    <h3>🟢 Solved</h3>
+    <p>{{ closedTickets }}</p>
+  </div>
+
+</div>
+<hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+
+
+  <div class="form-card">
+
+<input type="text" 
+           placeholder="🔍 Search tickets..." 
+           [(ngModel)]="searchTerm"
+           (input)="onSearch()"
+           style="width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #3498db; border-radius: 6px;">
+
+
+
+
+<div style="display: flex; gap: 10px;">
+      <input type="text" 
+             name="titleId"
+             placeholder="Issue Title..." 
+             [(ngModel)]="newTicketObj.title" 
+             style="flex: 1;">
+
+
+
+  <input type="text" 
+             name="descId"
+             placeholder="Description..." 
+             [(ngModel)]="newTicketObj.description" 
+             style="flex: 2;">
+             
+             
+             <button  type="button" (click)="onAddTicket()" style="background: #3498db; color: white; border: none;">
+       Create Ticket
+    </button>
+  </div>
+
+  <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+  <ul style="padding: 0;">
+    @for (ticket of filteredTickets; track ticket.id) {
+      <li class="ticket-card">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <strong style="font-size: 1.2rem; color: #34495e;">{{ ticket.title }}</strong>
+          
+          <span [style.background]="ticket.status === 'Open' ? '#ffebee' : '#e8f5e9'"
+                [style.color]="ticket.status === 'Open' ? '#c62828' : '#2e7d32'">
+            {{ ticket.status }}
+          </span>
+        </div>
+
+        <p style="color: #7f8c8d; margin-bottom: 15px;">{{ ticket.description }}</p>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+          
+          @if (ticket.status === 'Open') {
+            <button (click)="onCloseTicket(ticket)" 
+                    style="background: #2ecc71; color: white; border: none;">
+              ✓ Mark Done
+            </button>
+          }
+
+          <button (click)="onDeleteTicket(ticket.id)" 
+                  style="background: #e74c3c; color: white; border: none;">
+            🗑️ Delete
+          </button>
+        </div>
+
+      </li>
+    } 
+    @empty {
+      <div style="text-align: center; color: #95a5a6; padding: 40px;">
+        <h3>No tickets found 🎉</h3>
+        <p>Everything is running smoothly!</p>
+      </div>
+    }
+  </ul>
+</div>
+<app-chatbot></app-chatbot>
+<app-chatbot (ticketCreated)="loadTickets()"></app-chatbot>

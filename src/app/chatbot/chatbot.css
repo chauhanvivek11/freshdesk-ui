@@ -1,0 +1,142 @@
+/* Floating Button */
+.chat-launcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #007bff;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: transform 0.2s;
+}
+
+.chat-launcher:hover {
+  transform: scale(1.1);
+}
+
+/* Chat Window */
+.chat-window {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  height: 450px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+  border: 1px solid #ddd;
+}
+
+/* Header */
+.chat-header {
+  background: #007bff;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.chat-header button {
+  background: none; border: none; color: white; cursor: pointer; font-size: 16px;
+}
+
+/* Body */
+.chat-body {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Bubbles */
+.message {
+  padding: 10px 15px;
+  border-radius: 10px;
+  max-width: 80%;
+  font-size: 0.9rem;
+}
+.bot {
+  background: #e9ecef;
+  color: #333;
+  align-self: flex-start; /* Left side */
+  border-bottom-left-radius: 0;
+}
+.user {
+  background: #007bff;
+  color: white;
+  align-self: flex-end; /* Right side */
+  border-bottom-right-radius: 0;
+}
+
+/* Bottom Options */
+.chat-options {
+  padding: 10px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  border-top: 1px solid #eee;
+}
+.chat-options button {
+  background: white;
+  border: 1px solid #007bff;
+  color: #007bff;
+  padding: 5px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.chat-options button:hover {
+  background: #007bff;
+  color: white;
+}
+/* ... Purana CSS waisa hi rahega ... */
+
+/* Naya Input Area */
+.chat-input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  background: white;
+}
+
+.chat-input-area input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+.chat-input-area button {
+  background: #007bff;
+  color: white;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-left: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-input-area button:hover {
+  background: #0056b3;
+}

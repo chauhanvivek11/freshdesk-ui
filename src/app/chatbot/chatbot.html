@@ -1,0 +1,49 @@
+<div class="chat-launcher" (click)="toggleChat()">
+  💬
+</div>
+
+@if (isOpen) {
+  <div class="chat-window">
+    
+    <div class="chat-header">
+      <span>🤖 AI Support</span>
+      <button (click)="toggleChat()">✖</button>
+    </div>
+
+    <div class="chat-body" #chatContainer>
+      @for (msg of messages; track $index) {
+        <div class="message" [ngClass]="msg.sender">
+          {{ msg.text }}
+        </div>
+      }
+
+      @if (showCreateTicketOption) {
+        <div style="text-align: center; margin-top: 10px;">
+          <button (click)="createTicketFromChat()" 
+                  style="background: #28a745; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+            ✅ Yes, Create Ticket
+          </button>
+        </div>
+      }
+      
+    </div>
+
+    <div class="chat-options">
+      <button (click)="onOptionSelect('Password Reset')">🔑 Password</button>
+      <button (click)="onOptionSelect('Wifi Issue')">📶 Internet</button>
+      <button (click)="onOptionSelect('Printer Issue')">🖨️ Printer</button>
+      <button (click)="onOptionSelect('Email Issue')">📧 Email</button>
+      <button (click)="onOptionSelect('Ticket Status')">🎫 Status</button>
+    </div>
+
+    <div class="chat-input-area">
+      <input type="text" 
+             placeholder="Type your issue..." 
+             [(ngModel)]="chatInput" 
+             (keyup.enter)="sendMessage()">
+      
+      <button (click)="sendMessage()">➤</button>
+    </div>
+
+  </div>
+}
